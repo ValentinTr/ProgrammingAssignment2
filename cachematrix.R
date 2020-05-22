@@ -3,6 +3,8 @@
 
 ## Write a short comment describing this function
 
+##This function create a matrix that can have in cache is inverse matrix
+
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
   set <- function(y){
@@ -19,6 +21,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+##If the matrix have inverse in cache the function return his inverse
+##If the matrix doesnt have inverse in cache the function calculate the inverse and set in cache
 
 cacheSolve <- function(x, ...) {
   i <- x$getInverse()
@@ -27,14 +31,8 @@ cacheSolve <- function(x, ...) {
     return(i)
   }
   data <- x$get()
-  i <- solve(data) %*% data
+  i <- solve(data)
   x$setinverse(i)
   i
 }
 
-
-x <- stats::rnorm(16)
-dim(x) <- c(4,4)
-solve(x)
-testMatrix = makeCacheMatrix(x)
-cacheSolve(testMatrix)
